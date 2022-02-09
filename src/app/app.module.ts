@@ -16,15 +16,15 @@ import { RegisterComponent } from './login/register.component';
 
 
 import { FormsModule } from '@angular/forms';
-import { GraficoComponent } from './components/grafico/graficoDona.component';
+//import { GraficoComponent } from './components/grafico/graficoDona.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent,
-    GraficoComponent
+    RegisterComponent
+   // GraficoComponent
     
        ],
   imports: [
