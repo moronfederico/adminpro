@@ -13,7 +13,8 @@ export class ProfileComponent implements OnInit {
   usuario: Usuario;
 
   imagenSubir: File;
-  imagenTemp: any; //string
+  imagenTemp: string;
+  // string
 
 
   constructor(
@@ -44,7 +45,7 @@ export class ProfileComponent implements OnInit {
     }
     if(archivo.type.indexOf('image') < 0 ) {
     swal('Solo imagenes', 'El archivos seleccionado no es una imagen' , 'error');
-    this.imagenSubir=null;
+    this.imagenSubir = null;
     return
 
     }
