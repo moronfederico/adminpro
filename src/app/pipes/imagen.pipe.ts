@@ -10,37 +10,37 @@ export class ImagenPipe implements PipeTransform {
 
       let url = URL_SERVICIOS + '/img';
 
-      if(!img){
+      if (!img) {
         return url + '/usuarios/xxx';
       }
 
-      if (img.indexOf('https')>=0){
+      if (img.indexOf('https') >= 0) {
         return img;
       }
 
-      switch (tipo){
+      switch (tipo) {
 
         case 'usuario':
              url += '/usuarios/' + img;
-        break;
+             break;
 
 
         case 'medico':
            url += '/medicos/' + img;
-        break;
+           break;
 
 
         case 'hospital':
            url += '/hospitales/' + img;
-        break;
+           break;
+
 
         default:
-          console.log('tipo de imagen no existe, usuario, medicos, hospitales')
+          console.log('tipo de imagen no existe, usuario, medicos, hospitales');
           url += '/usuarios/xxx';
       }
 
-        return url;
+      return url;
   }
 
 }
-//hola

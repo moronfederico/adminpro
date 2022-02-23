@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 // import 'rxjs/Rx';
 import { Router } from '@angular/router';
 import { SubirArchivosService } from '../subir-archivo/subir-archivos.service';
-import { identifierModuleUrl } from '@angular/compiler';
+
 
 
 
