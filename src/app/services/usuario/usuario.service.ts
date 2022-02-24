@@ -3,9 +3,11 @@ import { Usuario } from '../../models/usuario.model';
 import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from '../../config/config';
 
-
+import * as swal from 'sweetalert';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+
+//import 'rxjs/add/operator/throw';
 
 // import 'rxjs/Rx';
 import { Router } from '@angular/router';
@@ -23,7 +25,7 @@ export class UsuarioService {
 
   usuario: Usuario;
   token: string;
-  menu: any = [];
+  menu: any[] = [];
 
   constructor(
     public http: HttpClient,
@@ -31,6 +33,30 @@ export class UsuarioService {
     public _subirArchivoService: SubirArchivosService
     ) { 
       this.cargarStorage();
+  }
+
+  renuevaToken(){
+    let url = URL_SERVICIOS + '/login/renuevatoken';
+    url += '?token=' + this.token;
+
+          return this.http.get(url)
+                 .map((resp: any) => {
+                  
+                    this.token = resp.token;
+                    localStorage.setItem('token', this.token);
+                  
+
+                    return true;
+
+                 })
+                 .catch( err => {
+                   this.router.navigate(['/login']);
+                  swal('No se pudo renovar token', 'No fue posible renovar token', 'error')
+              
+                  return Observable.throw(err);
+        
+                });
+
   }
 
   estaLogueado(){
@@ -53,7 +79,7 @@ export class UsuarioService {
   guardarStorage(id: string, token: string, usuario: Usuario, menu: any) {
 
     localStorage.setItem('id',id);
-    localStorage.setItem('toke',token);
+    localStorage.setItem('token',token);
     localStorage.setItem('usuario',JSON.stringify(usuario) );
     localStorage.setItem('menu',JSON.stringify(menu) );
 
